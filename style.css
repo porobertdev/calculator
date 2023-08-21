@@ -1,5 +1,6 @@
 body {
     background-color: #4D4D4D;
+    user-select: none;
     display: flex;
     justify-content: center;
     margin-top: 50px;
