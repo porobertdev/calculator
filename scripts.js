@@ -60,6 +60,17 @@ function createClickEvents() {
             operation = [];
             display('clear');
             return;
+        } else if (value == 'Backspace') {
+            if (operation.at(-1).length > 1) {
+                // it's a number with digits
+                console.log(operation.at(-1).split('').pop())
+                operation[operation.length - 1] = operation[operation.length - 1].slice(0, -1);
+            } else {
+                // it's an operator
+                operation.pop();
+            }
+            display('operation');
+            return;
         }
         
         /*
@@ -122,7 +133,7 @@ function operate(a, operator, b) {
     
     // Thanks @StackOverflow: https://stackoverflow.com/a/11832950/21600888
     result = Math.round(result * 100) / 100;
-    
+
     display('result');
     return result;
 }
@@ -141,7 +152,7 @@ function display(type) {
     }
 }
 
-const validKeys = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '*', '/', 'Enter', 'c'];
+const validKeys = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '*', '/', 'Enter', 'c', 'Backspace'];
 const operators = ['+', '-', 'x', '÷', '='];
 let operation = [];
 
