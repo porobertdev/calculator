@@ -29,6 +29,8 @@ function createClickEvents() {
             operation[operation.length - 1] += value;
         }
 
+        displayOperation.textContent = operation.slice(0, 3).join('');
+
         if (operation.length == 4) {
             if (operation.at(-1) == '=') {
                 operation.splice(0, 4, operate(+operation[0], operation[1], +operation[2]));
@@ -57,9 +59,13 @@ function operate(a, operator, b) {
     }
 
     console.log(`RESULT: ${a} ${operator} ${b} = ${result}`);
+    displayResult.textContent = result;
     return result;
 }
 
 let operators = ['+', '-', 'x', '÷'];
 let operation = [];
+
+const displayOperation = document.querySelector('.operation');
+const displayResult = document.querySelector('.result');
 createClickEvents();
