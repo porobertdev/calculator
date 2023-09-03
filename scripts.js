@@ -53,8 +53,6 @@ function createClickEvents() {
             operation[operation.length - 1] += value;
         }
 
-        display('operation');
-
         /*
             if array has 3 valid operands, we need to calculate
             the current operation when adding one more operator.
@@ -67,6 +65,7 @@ function createClickEvents() {
             }
         }
 
+        display('operation');
         console.log(operation);
     }
 }
