@@ -30,7 +30,11 @@ function createClickEvents() {
         }
 
         if (operation.length == 4) {
-             operation.splice(0, 3, operate(+operation[0], operation[1], +operation[2]));
+            if (operation.at(-1) == '=') {
+                operation.splice(0, 4, operate(+operation[0], operation[1], +operation[2]));
+            } else {
+                operation.splice(0, 3, operate(+operation[0], operation[1], +operation[2]));
+            }
         }
 
         console.log(operation);
