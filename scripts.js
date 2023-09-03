@@ -17,10 +17,43 @@ function divide(a, b) {
 function createClickEvents() {
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach( btn => btn.addEventListener('click', clickHandler));
+    const body = document.querySelector('body');
+    body.addEventListener('keydown', clickHandler);
 
     function clickHandler(event) {
-        let value = event.target.textContent;
-        let btnType = event.target.classList[1];
+        console.log(event);
+        let value;
+        let btnType;
+
+        if (event.type == 'click') {
+            value = event.target.textContent;
+            btnType = event.target.classList[1];
+        } else {
+            value = event.key;
+
+            if (!validKeys.concat(operators).includes(value)) {
+                console.log('omg')
+                return;
+            }
+            
+            switch (true) {
+                case (value == '*'):
+                    value = 'x';
+                    break;
+                case (value == '/'):
+                    value = '÷';
+                    break;
+                case (value == 'Enter'):
+                    value = '=';
+                    break;
+                case (value == 'c'):
+                    value = 'C';
+            }
+
+            btnType = (operators.includes(value)) ? 'operator' : 'num';
+        }
+
+        console.log(body);
         console.log(value);
 
         if (value == 'C') {
@@ -104,7 +137,8 @@ function display(type) {
     }
 }
 
-let operators = ['+', '-', 'x', '÷'];
+const validKeys = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '*', '/', 'Enter', 'c'];
+const operators = ['+', '-', 'x', '÷', '='];
 let operation = [];
 
 const displayOperation = document.querySelector('.operation');
