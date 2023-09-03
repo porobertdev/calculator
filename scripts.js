@@ -28,7 +28,25 @@ function createClickEvents() {
             display('clear');
             return;
         }
+        
+        /*
+            if user tries to add an operator on first index, or
+            tries to add an operator twice in row, or
+            tries to add equal before having 3 valid operands
+        */
+        if (btnType == 'operator') {
+            if (operation.length == 0 || operators.includes(operation.at(-1)) ||
+                operation.length < 3 && value == '=') {
+                return;
+            }
+        }
 
+        /*
+            we need to push the number or operator to the array only
+            if it's the first index, or the previous index is an operator.
+            Otherwise, that means the user wants to add more digits to the
+            number, so just append them to the last index.
+        */
         if (operation.length == 0 || operators.includes(operation.at(-1)) || btnType == 'operator') {
             operation.push(value)
         } else if (btnType == 'num') {
@@ -37,6 +55,10 @@ function createClickEvents() {
 
         display('operation');
 
+        /*
+            if array has 3 valid operands, we need to calculate
+            the current operation when adding one more operator.
+        */
         if (operation.length == 4) {
             if (operation.at(-1) == '=') {
                 operation.splice(0, 4, operate(+operation[0], operation[1], +operation[2]));
