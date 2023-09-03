@@ -23,6 +23,13 @@ function createClickEvents() {
         let btnType = event.target.classList[1];
         console.log(value);
 
+        if (value == 'C') {
+            operation = [];
+            displayOperation.textContent = '';
+            displayResult.textContent = '';
+            return;
+        }
+
         if (operation.length == 0 || operators.includes(operation.at(-1)) || btnType == 'operator') {
             operation.push(value)
         } else if (btnType == 'num') {
