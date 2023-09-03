@@ -37,6 +37,25 @@ function createClickEvents() {
     }
 }
 
+function operate(a, operator, b) {
+    switch (true) {
+        case (operator == '+'):
+            result = add(a, b);
+            break;
+        case (operator == '-'):
+            result = substract(a, b);
+            break;
+        case (operator == 'x'):
+            result = multiply(a, b);
+            break;
+        case (operator == '÷'):
+            result = divide(a, b);
+    }
+
+    console.log(`RESULT: ${a} ${operator} ${b} = ${result}`);
+    return result;
+}
+
 let operators = ['+', '-', 'x', '÷'];
 let operation = [];
 createClickEvents();
