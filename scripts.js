@@ -119,6 +119,10 @@ function operate(a, operator, b) {
     }
 
     console.log(`RESULT: ${a} ${operator} ${b} = ${result}`);
+    
+    // Thanks @StackOverflow: https://stackoverflow.com/a/11832950/21600888
+    result = Math.round(result * 100) / 100;
+    
     display('result');
     return result;
 }
