@@ -12,6 +12,12 @@ body {
     background-color: #F8F8F8;
     font-family: 'Inter';
     font-size: 24px;
+    border: 5px solid black;
+}
+
+#calculator,
+.display {
+    border-radius: 10px;
 }
 
 .display {
@@ -24,6 +30,8 @@ body {
     align-items: flex-end; /* horizontal - main axis */
     justify-content: flex-end; /* vertical - cross axis */
     row-gap: 20px;
+    border-end-start-radius: 0px;
+    border-end-end-radius: 0px;
 }
 
 .result {
