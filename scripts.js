@@ -25,8 +25,7 @@ function createClickEvents() {
 
         if (value == 'C') {
             operation = [];
-            displayOperation.textContent = '';
-            displayResult.textContent = '';
+            display('clear');
             return;
         }
 
@@ -36,7 +35,7 @@ function createClickEvents() {
             operation[operation.length - 1] += value;
         }
 
-        displayOperation.textContent = operation.slice(0, 3).join('');
+        display('operation');
 
         if (operation.length == 4) {
             if (operation.at(-1) == '=') {
@@ -66,8 +65,22 @@ function operate(a, operator, b) {
     }
 
     console.log(`RESULT: ${a} ${operator} ${b} = ${result}`);
-    displayResult.textContent = result;
+    display('result');
     return result;
+}
+
+function display(type) {
+    switch (true) {
+        case (type == 'operation'):
+            displayOperation.textContent = operation.slice(0, 3).join('');
+            break;
+        case (type == 'result'):
+            displayResult.textContent = result;
+            break;
+        case (type == 'clear'):
+            displayOperation.textContent = '';
+            displayResult.textContent = '';
+    }
 }
 
 let operators = ['+', '-', 'x', '÷'];
