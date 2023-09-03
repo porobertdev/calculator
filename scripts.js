@@ -85,6 +85,13 @@ function createClickEvents() {
             }
         }
 
+        // Workaround: don't allow two dots in one number
+        if (value == '.') {
+            if (operation.at(-1).split('').filter( item => item == '.').length == 1) {
+                return;
+            }
+        }
+
         /*
             we need to push the number or operator to the array only
             if it's the first index, or the previous index is an operator.
