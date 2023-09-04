@@ -21,7 +21,6 @@ function createClickEvents() {
     body.addEventListener('keydown', clickHandler);
 
     function clickHandler(event) {
-        console.log(event);
         let value;
         let btnType;
 
@@ -29,13 +28,15 @@ function createClickEvents() {
             value = event.target.textContent;
             btnType = event.target.classList[1];
         } else {
+            // it's KB that was pressed
             value = event.key;
 
+            // don't do anything if the key pressed isn't supported
             if (!validKeys.concat(operators).includes(value)) {
-                console.log('omg')
                 return;
             }
             
+            // convert PC's keys to the corresponding HTML textContent.
             switch (true) {
                 case (value == '*'):
                     value = 'x';
@@ -53,9 +54,6 @@ function createClickEvents() {
             btnType = (operators.includes(value)) ? 'operator' : 'num';
         }
 
-        console.log(body);
-        console.log(value);
-
         if (value == 'C') {
             operation = [];
             display('clear');
@@ -63,7 +61,6 @@ function createClickEvents() {
         } else if (value == 'Backspace') {
             if (operation.at(-1).length > 1) {
                 // it's a number with digits
-                console.log(operation.at(-1).split('').pop())
                 operation[operation.length - 1] = operation[operation.length - 1].slice(0, -1);
             } else {
                 // it's an operator
@@ -117,7 +114,6 @@ function createClickEvents() {
         }
 
         display('operation');
-        console.log(operation);
     }
 }
 
@@ -135,8 +131,6 @@ function operate(a, operator, b) {
         case (operator == '÷'):
             result = divide(a, b);
     }
-
-    console.log(`RESULT: ${a} ${operator} ${b} = ${result}`);
     
     // Thanks @StackOverflow: https://stackoverflow.com/a/11832950/21600888
     result = Math.round(result * 100) / 100;
