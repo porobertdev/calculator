@@ -23,6 +23,7 @@ function createClickEvents() {
     function clickHandler(event) {
         let value;
         let btnType;
+        let deleteCount;
 
         if (event.type == 'click') {
             value = event.target.textContent;
@@ -106,12 +107,10 @@ function createClickEvents() {
             the current operation when adding one more operator.
         */
         if (operation.length == 4) {
-            if (operation.at(-1) == '=') {
-                operation.splice(0, 4, operate(+operation[0], operation[1], +operation[2]));
-            } else {
-                operation.splice(0, 3, operate(+operation[0], operation[1], +operation[2]));
+            deleteCount = (operation.at(-1) == '=') ? 4 : 3;
+            operation.splice(0, deleteCount, operate(+operation[0], operation[1], +operation[2]));
             }
-        }
+        
 
         display('operation');
     }
